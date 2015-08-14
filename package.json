@@ -1,0 +1,36 @@
+{
+  "name": "lightfold",
+  "version": "1.0.0",
+  "description": "A folding lightbox component.",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/akoenig/lightfold.git"
+  },
+  "keywords": [
+    "lightbox",
+    "reduct"
+  ],
+  "author": "André König <andre.koenig@posteo.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akoenig/lightfold/issues"
+  },
+  "homepage": "https://github.com/akoenig/lightfold#readme",
+  "devDependencies": {
+    "steal": "^0.10.5"
+  },
+  "dependencies": {
+    "@reduct/assembler": "^1.0.2",
+    "@reduct/component": "^1.1.1"
+  },
+  "system": {
+    "paths": {
+      "@reduct/assembler": "./node_modules/@reduct/assembler/Dist/Assembler.js",
+      "@reduct/component": "./node_modules/@reduct/component/Dist/Component.js"
+    }
+  }
+}
