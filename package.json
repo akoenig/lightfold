@@ -21,13 +21,17 @@
   },
   "homepage": "https://github.com/akoenig/lightfold#readme",
   "devDependencies": {
-    "steal": "^0.10.5"
+    "steal": "stealjs/steal#update-babel-traceur"
   },
   "dependencies": {
     "@reduct/assembler": "^1.0.2",
     "@reduct/component": "^1.1.1"
   },
   "system": {
+    "transpiler": "babel",
+    "babelOptions": {
+      "stage": 0
+    },
     "paths": {
       "@reduct/assembler": "./node_modules/@reduct/assembler/Dist/Assembler.js",
       "@reduct/component": "./node_modules/@reduct/component/Dist/Component.js"
