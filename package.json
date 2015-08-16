@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "@reduct/assembler": "^1.0.2",
-    "@reduct/component": "^1.1.1"
+    "@reduct/component": "^1.1.1",
+    "velocity-animate": "^1.2.2"
   },
   "system": {
     "transpiler": "babel",
@@ -34,7 +35,8 @@
     },
     "paths": {
       "@reduct/assembler": "./node_modules/@reduct/assembler/Dist/Assembler.js",
-      "@reduct/component": "./node_modules/@reduct/component/Dist/Component.js"
+      "@reduct/component": "./node_modules/@reduct/component/Dist/Component.js",
+      "velocity-animate": "./node_modules/velocity-animate/velocity.js"
     }
   }
 }
