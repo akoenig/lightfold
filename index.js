@@ -13,10 +13,11 @@
 
 import assembler from '@reduct/assembler';
 
-import Lightfold from './lib/index';
+import {Lightfold, Example} from './lib/index';
 
 const app = assembler();
 
 app.register(Lightfold, 'Lightfold');
+app.register(Example, 'Example');
 
 app.run();
