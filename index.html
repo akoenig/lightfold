@@ -6,7 +6,7 @@
         <title>lightfold</title>
 
         <style>
-            @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+            @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,700);
 
             .lightfold {
                 font-family: 'Open Sans', sans-serif;
@@ -14,99 +14,69 @@
 
             .lightfold__overlay {
                 align-items: center;
-                background: rgba(0, 0, 0, .6);
+                background: rgba(0, 0, 0, .8);
                 display: flex;
-                position: fixed;;
-                opacity: 0;
+                position: fixed;
                 top: 0;
+                opacity: 0;
                 right: 0;
                 bottom: 0;
                 left: 0;
                 justify-content: center;
+                transition: opacity 1s ease-in-out;
                 visibility: hidden;
             }
 
-            .lightfold__contents {
+            .lightfold--active .lightfold__overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .lightfold__close {
+                cursor: pointer;
+                position: absolute;
+                right: 2em;
+                top: 2em;
+                width: 35px;
+            }
+
+            .lightfold__close svg {
+                fill: #fff;
+            }
+
+            .lightfold__slides {
+                opacity: 0;
                 position: relative;
                 width: 50%;
             }
 
-            .lightfold__contents__title {
-                box-shadow: 0 0 13px 0 rgba(0,0,0,0.2);
+            .lightfold__slides__slide {
                 background: #fff;
-                font-size: 125%;
-                font-weight: 100;
-                padding: .8em 1.5em;
+                position: absolute;
+                left: 0;
+                right: 0;
+            }
+
+            .lightfold__slides > [data-front] {
+                align-items: center;
+                display: flex;
+                font-size: 180%;
+                font-weight: 100%;
+                height: 100%;
+                justify-content: center;
                 z-index: 1;
             }
 
-            .lightfold__contents__image {
-                height: 400px; 
-                position: relative;
+            .lightfold__slides > [data-front] > img {
+                display: inherit;
+            }
+
+            .lightfold__slides > [data-back] {
                 z-index: 0;
             }
 
-            .parent1    { 
-                /* overall animation container */
-                height: 0; 
-                overflow: hidden;
-
-                -webkit-transition-property: height;
-                -webkit-transition-duration: .5s; 
-                -webkit-perspective: 1000px; 
-                -webkit-transform-style: preserve-3d; 
-
-                -moz-transition-property:height; 
-                -moz-transition-duration: .5s; 
-                -moz-perspective: 1000px; 
-                -moz-transform-style: preserve-3d; 
-
-                -o-transition-property:height; 
-                -o-transition-duration: .5s; 
-                -o-perspective: 1000px; 
-                -o-transform-style: preserve-3d;
-
-                transition-property: height;
-                transition-duration: .5s;
-                perspective: 1000px;
-                transform-style: preserve-3d;
-            }
-            .parent2    { 
-                /* full content during animation *can* go here */ 
-            }
-            .parent3    { 
-                /* animated, "folded" block */
-                height: 56px; 
-                width: 100%;
-
-                -webkit-transition-property: all; 
-                -webkit-transition-duration: .5s;
-                -webkit-transform: rotateX(-90deg);
-                -webkit-transform-origin: top; 
-
-                -moz-transition-property: all; 
-                -moz-transition-duration: .5s;
-                -moz-transform: rotateX(-90deg);
-                -moz-transform-origin: top; 
-
-                -o-transition-property: all; 
-                -o-transition-duration: .5s;
-                -o-transform: rotateX(-90deg);
-                -o-transform-origin: top;
-
-                transition-property: all; 
-                transition-duration: .5s;
-                transform: rotateX(-90deg);
-                transform-origin: top; 
-            }
-
-            .lightfold__contents__image:hover .parent1   { height: 100%; }
-            .lightfold__contents__image:hover .parent3   { 
-                -webkit-transform: rotateX(0deg); 
-                -moz-transform: rotateX(0deg); 
-                -o-transform: rotateX(0deg); 
-                transform: rotateX(0deg); 
-                height: 100%; 
+            strong {
+                font-weight: 700;
             }
 
         </style>
@@ -114,30 +84,32 @@
     <body>
         <div class="lightfold"
             data-component="Lightfold"
+            data-activeClass="lightfold--active"
             data-overlaySelector="[data-overlay]"
-            data-contentsSelector="[data-contents]">
+            data-slidesSelector="[data-slides]"
+            data-frontSelector="[data-front]"
+            data-backSelector="[data-back]"
+            data-imageSelector="[data-image]">
 
             <div class="lightfold__trigger">
                 <a data-open href="#">Open</a>
             </div>
 
             <div class="lightfold__overlay" data-overlay>
+                <div class="lightfold__close" data-close>
+                    <svg baseProfile="basic" xmlns="http://www.w3.org/2000/svg" viewBox="8 -8.5 300 300"><path d="M275.3 29.8l-5.6-5.7L158 135.8 46.3 24.1l-5.6 5.7 111.6 111.7L40.7 253.1l5.6 5.7L158 147.1l111.7 111.7 5.6-5.7-111.6-111.6"/></svg>
+                </div>
 
-                <div class="lightfold__contents" data-contents>
-                    <div class="lightfold__contents__title">
-                        Unser Produkte
+                <div class="lightfold__slides" data-slides>
+                    <div class="lightfold__slides__slide" data-front>
+                        Unsere <strong>Produkte</strong>
                     </div>
 
-                    <div class="lightfold__contents__image">
-                        <div class="parent1">
-                            <div class="parent2">
-                                <div class="parent3">
-                                    <img data-image src="" width="100%">
-                                </div>
-                            </div>
-                        </div>
+                    <div class="lightfold__slides__slide" data-back>
+                        <img src="" data-image="http://i.telegraph.co.uk/multimedia/archive/02705/newyork_2705424b.jpg">
                     </div>
-                </div> 
+                </div>
+
             </div>
         </div>
 
